@@ -4,19 +4,9 @@ import {
     HIT_HEAD,
     BLOW_HEAD
 } from '../constant/strings';
-import React, { useEffect, useRef } from 'react';
 
 
 export const ResultTable = (prop) => {
-    const scrollBottomRef = useRef(null);
-    const scrollToButtom = () => {
-        scrollBottomRef.current.scrollIntoView({ behavior: "smooth" })
-    };
-
-    useEffect(() => {
-        scrollToButtom();
-    }, [prop.lastResult])
-
     const classes = "text-2xl font-bold border-b-2 border-gray-500 px-4 py-2";
 
     return (
@@ -41,7 +31,6 @@ export const ResultTable = (prop) => {
                         </tr>
                     ))}
                 </tbody>
-                <div ref={scrollBottomRef} />
             </table>
         </div>
         </div>

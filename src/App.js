@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Keyboard } from './components/Keyboard';
 import { ResultTable } from './components/ResultTable';
 import { Alert } from './components/Alert';
@@ -74,7 +74,14 @@ function App() {
     const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 
     // 自動スクロール
-
+    const scrollBottomRef = useRef(null);
+    const scrollToButtom = () => {
+        scrollBottomRef.current.scrollIntoView({ behavior: "smooth" })
+    };
+    
+    useEffect(() => {
+        scrollToButtom();
+    }, [lastResult])
 
     const isWinningNums = (numbers) => {
         return SOLUTION === numbers
@@ -193,11 +200,13 @@ function App() {
         cellStatuses={cellStatuses}
         onPosition={onPosition}
         />
-        <div className="flex h-72 w-full max-w-sm max-h-96 overflow-auto mx-auto mt-5 border-4 mb-6">
+        <div className="h-72 w-full max-w-sm max-h-96 overflow-auto mx-auto mt-5 border-4 mb-6">
         <ResultTable
         lastResult={lastResult}
         SOLUTION={SOLUTION}
+        ref={scrollBottomRef}
         />
+        <div ref={scrollBottomRef}/>
         </div>
 
         <Keyboard 
