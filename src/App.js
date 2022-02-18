@@ -204,7 +204,6 @@ function App() {
         <ResultTable
         lastResult={lastResult}
         SOLUTION={SOLUTION}
-        ref={scrollBottomRef}
         />
         <div ref={scrollBottomRef}/>
         </div>
