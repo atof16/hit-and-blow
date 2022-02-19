@@ -200,67 +200,72 @@ function App() {
 
     return (
     <div className="App dark:bg-zinc-900 h-screen">
-            <h1 className="flex justify-center mx-auto w-full items-center px-2 py-2 text-3xl dark:text-white font-bold">
-                {GAME_TITLE}
-            </h1>
-        <div className="flex justify-center mx-auto w-full items-center mb-3">
-            <DarkModeToggle 
-            enabled={isDarkModeOn}
-            onChange={() => setIsDarkModeOn(prevState => !prevState)}
+        <div className="justify-center mx-auto h-full w-full max-w-sm">
+            <div className="flex justify-between mx-auto w-full items-center mb-3">
+                <h1 className="text-3xl dark:text-white font-bold">
+                    {GAME_TITLE}
+                </h1>
+                <ConfirmDialog 
+                isConfirmDialogOpen={isConfirmDialogOpen}
+                openModal={() => setIsConfirmDialogOpen(true)}
+                closeModal={() => setIsConfirmDialogOpen(false)}
+                resetModal={resetGame}
+                />
+                <RuleDialog
+                isRuleDialogOpen={isRuleDialogOpen}
+                openModal={() => setIsRuleDialogOpen(true)}
+                closeModal={() => setIsRuleDialogOpen(false)}
+                />
+                <DarkModeToggle 
+                enabled={isDarkModeOn}
+                onChange={() => setIsDarkModeOn(prevState => !prevState)}
+                />
+            </div>
+            <div className="flex justify-center mx-auto w-full items-center mb-3">
+
+            </div>
+
+            <Grid 
+            guesses={guesses}
+            currentPosition={currentPosition}
+            cellStatuses={cellStatuses}
+            onPosition={onPosition}
             />
-            <ConfirmDialog 
-            isConfirmDialogOpen={isConfirmDialogOpen}
-            openModal={() => setIsConfirmDialogOpen(true)}
-            closeModal={() => setIsConfirmDialogOpen(false)}
-            resetModal={resetGame}
+            <div className="h-72 w-full max-w-sm max-h-96 overflow-auto mx-auto mt-5 border-2 border-gray-500 dark:border-white mb-6 dark:border-white">
+            <ResultTable
+            lastResult={lastResult}
+            SOLUTION={SOLUTION}
+            isRule={false}
             />
-            <RuleDialog
-            isRuleDialogOpen={isRuleDialogOpen}
-            openModal={() => setIsRuleDialogOpen(true)}
-            closeModal={() => setIsRuleDialogOpen(false)}
+            <div ref={scrollBottomRef}/>
+            </div>
+
+            <Keyboard 
+            onChar={onChar}
+            onClear={onClear}
+            onEnter={onEnter}
+            isGameWon={isGameOver}
+            />
+
+
+            <Alert 
+            isReveal={isGameWon}
+            message={CORRECT_MESSAGE}
+            alertType="correct"
+            />
+
+            <Alert 
+            isReveal={isNotEnoughNumbers}
+            message={NOT_ENOUGH_NUMBER_MESSAGE}
+            alertType="warning"
+            />
+
+            <Alert 
+            isReveal={isDuplicatedNumber}
+            message={DUPLICATED_NUMBER_MESSAGE}
+            alertType="warning"
             />
         </div>
-
-        <Grid 
-        guesses={guesses}
-        currentPosition={currentPosition}
-        cellStatuses={cellStatuses}
-        onPosition={onPosition}
-        />
-        <div className="h-72 w-full max-w-sm max-h-96 overflow-auto mx-auto mt-5 border-2 border-gray-500 dark:border-white mb-6 dark:border-white">
-        <ResultTable
-        lastResult={lastResult}
-        SOLUTION={SOLUTION}
-        isRule={false}
-        />
-        <div ref={scrollBottomRef}/>
-        </div>
-
-        <Keyboard 
-        onChar={onChar}
-        onClear={onClear}
-        onEnter={onEnter}
-        isGameWon={isGameOver}
-        />
-
-
-        <Alert 
-        isReveal={isGameWon}
-        message={CORRECT_MESSAGE}
-        alertType="correct"
-        />
-
-        <Alert 
-        isReveal={isNotEnoughNumbers}
-        message={NOT_ENOUGH_NUMBER_MESSAGE}
-        alertType="warning"
-        />
-
-        <Alert 
-        isReveal={isDuplicatedNumber}
-        message={DUPLICATED_NUMBER_MESSAGE}
-        alertType="warning"
-        />
     </div>
     );
 }

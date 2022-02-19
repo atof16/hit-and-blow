@@ -3,14 +3,14 @@ import { RefreshIcon, ExclamationCircleIcon} from '@heroicons/react/outline'
 
 export const ConfirmDialog = (prop) => {
     return (
-        <div className="px-2">
+        <div>
             <div>
                 <button
                 className="py-2 px-2 dark:text-white"
                 type="button"
                 onClick={prop.openModal}
                 >
-                <RefreshIcon className="h-8 w-8" />
+                <RefreshIcon className="h-7 w-7" />
                 </button>
             </div>
             

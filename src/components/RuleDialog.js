@@ -4,14 +4,14 @@ import { QuestionMarkCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons
 
 export const RuleDialog = (prop) => {
     return (
-        <div className="px-2">
+        <div>
             <div>
                 <button
                 className="py-2 px-2 dark:text-white"
                 type="button"
                 onClick={prop.openModal}
                 >
-                <QuestionMarkCircleIcon className="h-8 w-8" />
+                <QuestionMarkCircleIcon className="h-7 w-7" />
                 </button>
             </div>
             

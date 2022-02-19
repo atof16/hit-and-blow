@@ -1,12 +1,13 @@
 import { Switch } from '@headlessui/react'
-import {MoonIcon} from '@heroicons/react/outline'
+import { MoonIcon } from '@heroicons/react/solid'
 
 export const DarkModeToggle = (prop) => {
     return (
+        <div className="flex justify-center items-center">
         <Switch.Group>
-            <div className="flex items-center py-4 px-2">
-                <Switch.Label className="mr-2 dark:text-white">
-                    <MoonIcon className="h-5 w-5"/>
+            <div className="flex items-center py-4">
+                <Switch.Label>
+                    <MoonIcon className="h-5 w-5 text-yellow-400 mr-1" />
                 </Switch.Label>
                 <Switch
                 checked={prop.enabled}
@@ -23,5 +24,6 @@ export const DarkModeToggle = (prop) => {
                 </Switch>
             </div>
         </Switch.Group>
+        </div>
     )
 }
