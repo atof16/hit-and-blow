@@ -7,16 +7,16 @@ import {
 
 
 export const ResultTable = (prop) => {
-    const classes = "text-2xl font-bold border-b-2 border-gray-500 px-4 py-2";
+    const classes = "text-2xl font-bold dark:text-white border-b-2 border-black dark:border-white px-4 py-2";
 
     return (
         <div className="flex">
         <div className="mx-auto item-center">
             <table className="w-full table-fixed overflow-auto">
-                <thead className='border-b-2 border-gray-800'>
+                <thead className='border-b-2 border-black dark:border-white'>
                     <tr>
                         <th className="sticky px-4"></th>
-                        <th className="sticky text-xl px-4">{YOUR_GUESS_HEAD}</th>
+                        <th className="sticky text-xl dark:text-white px-4">{YOUR_GUESS_HEAD}</th>
                         <th className="sticky text-xl px-6 text-red-500">{HIT_HEAD}</th>
                         <th className="sticky text-xl text-cyan-500">{BLOW_HEAD}</th>
                     </tr>

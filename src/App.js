@@ -5,7 +5,8 @@ import { ResultTable } from './components/ResultTable';
 import { Alert } from './components/Alert';
 import { Grid } from './components/Grid';
 import { RuleDialog } from './components/RuleDialog';
-import { ConfirmDialog } from './components/ConfirmDialog'
+import { ConfirmDialog } from './components/ConfirmDialog';
+import { DarkModeToggle } from './components/DarkModeToggle';
 import { 
     GAME_TITLE,
     NOT_ENOUGH_NUMBER_MESSAGE,
@@ -20,6 +21,7 @@ import { solutionNumber } from './lib/solutionNumber'
 
 
 const gameStatus = 'gameStatus'
+const themeStatus = 'themeStatus'
 
 function App() {
     // 答えやゲーム状態の保持
@@ -73,6 +75,15 @@ function App() {
     // newgameの確認画面
     const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
 
+    // ダークモード
+    const [isDarkModeOn, setIsDarkModeOn] = useState(() => {
+        const loaded = localStorage.getItem(themeStatus);
+        if (loaded) {
+            return JSON.parse(loaded).darkTheme
+        }
+        return false
+    });
+
     // 自動スクロール
     const scrollBottomRef = useRef(null);
     const scrollToButtom = () => {
@@ -95,6 +106,18 @@ function App() {
             guesses: guesses
         }))
     }, [SOLUTION, lastResult, isGameOver, guesses])
+
+    // ダークモード切り替え
+    useEffect(() => {
+        if (isDarkModeOn) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+        localStorage.setItem(themeStatus, JSON.stringify({
+            darkTheme: isDarkModeOn
+        }))
+    }, [isDarkModeOn])
 
     const onChar = (number) => {
         // useStateが更新されるタイミングはonChar関数が呼び出された後
@@ -176,11 +199,15 @@ function App() {
     }
 
     return (
-    <div className="App">
-            <h1 className="flex justify-center mx-auto w-full items-center px-2 py-2 text-3xl font-bold mt-5">
+    <div className="App dark:bg-zinc-900 h-screen">
+            <h1 className="flex justify-center mx-auto w-full items-center px-2 py-2 text-3xl dark:text-white font-bold">
                 {GAME_TITLE}
             </h1>
         <div className="flex justify-center mx-auto w-full items-center mb-3">
+            <DarkModeToggle 
+            enabled={isDarkModeOn}
+            onChange={() => setIsDarkModeOn(prevState => !prevState)}
+            />
             <ConfirmDialog 
             isConfirmDialogOpen={isConfirmDialogOpen}
             openModal={() => setIsConfirmDialogOpen(true)}
@@ -200,10 +227,11 @@ function App() {
         cellStatuses={cellStatuses}
         onPosition={onPosition}
         />
-        <div className="h-72 w-full max-w-sm max-h-96 overflow-auto mx-auto mt-5 border-4 mb-6">
+        <div className="h-72 w-full max-w-sm max-h-96 overflow-auto mx-auto mt-5 border-2 border-gray-500 dark:border-white mb-6 dark:border-white">
         <ResultTable
         lastResult={lastResult}
         SOLUTION={SOLUTION}
+        isRule={false}
         />
         <div ref={scrollBottomRef}/>
         </div>

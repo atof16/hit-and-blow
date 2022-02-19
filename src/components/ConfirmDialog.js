@@ -6,7 +6,7 @@ export const ConfirmDialog = (prop) => {
         <div className="px-2">
             <div>
                 <button
-                className="py-2 px-2"
+                className="py-2 px-2 dark:text-white"
                 type="button"
                 onClick={prop.openModal}
                 >
@@ -40,16 +40,16 @@ export const ConfirmDialog = (prop) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-100"
                 >
-                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden item-center align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden item-center align-middle transition-all transform bg-white dark:bg-zinc-800 shadow-xl rounded-2xl">
                     <div className="flex justify-between mb-2">
                         <Dialog.Title
                         as="h2"
-                        className="text-lg font-medium leading-6 text-gray-900"
+                        className="text-lg font-medium leading-6 dark:text-white"
                         >
                         最初からやり直しますか？
                         </Dialog.Title>
                     </div>
-                    <div className="flex text-sm mb-2 text-left">
+                    <div className="flex text-sm mb-2 text-left dark:text-white">
                         <ExclamationCircleIcon className="h-5 w-5 mr-2" />
                         <div>答えと推測結果がすべてリセットされます。</div>
                     </div>

@@ -35,7 +35,7 @@ export const Keyboard = (prop) => {
                     </button>
                 ))}
             </div>
-            <div className='flex justify-center mb-1 mt-3'>
+            <div className='flex justify-center'>
                     <button disabled={prop.isGameWon} value="clear" className={clearClasses} onClick={() => onClick('clear')}>{CLEAR_TEXT}</button>
                     <button disabled={prop.isGameWon} value="enter" className={enterClasses} onClick={() => onClick('enter')}>{ENTER_TEXT}</button>
             </div>

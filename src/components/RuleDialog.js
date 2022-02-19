@@ -1,13 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { ResultTable } from './ResultTable';
-import { QuestionMarkCircleIcon, InformationCircleIcon, XIcon } from '@heroicons/react/outline'
+import { QuestionMarkCircleIcon, ExclamationCircleIcon, XIcon } from '@heroicons/react/outline'
 
 export const RuleDialog = (prop) => {
     return (
         <div className="px-2">
             <div>
                 <button
-                className="py-2 px-2"
+                className="py-2 px-2 dark:text-white"
                 type="button"
                 onClick={prop.openModal}
                 >
@@ -41,35 +41,35 @@ export const RuleDialog = (prop) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-100"
                 >
-                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden item-center align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden item-center align-middle transition-all transform bg-white dark:bg-zinc-800 shadow-xl rounded-2xl">
                     <div className="flex justify-between mb-4">
                         <div className="mx-4"></div>
                         <Dialog.Title
                         as="h2"
-                        className="text-lg font-medium leading-6 text-gray-900"
+                        className="text-lg font-medium leading-6 dark:text-white"
                         >
                         Hit and Blowとは？
                         </Dialog.Title>
                         <button
                         type="button"
-                        className="top-0 order-last"
+                        className="top-0 order-last dark:text-white"
                         onClick={prop.closeModal}
                         >
                             <XIcon className="h-7 w-7" />
                         </button>
                     </div>
                     <div>
-                        <div className="text-sm text-gray-500 text-left">
+                        <div className="text-sm text-left dark:text-white">
                             <div>Hit and Blowとは重複のない4桁の数字を推測するゲームです。</div>
                             <div>あなたの各推測に対して、数字と桁の位置が共に合っていれば<span className="text-red-500 font-bold">HIT</span>、数字だけ合っており桁の位置が違うときは<span className="font-bold text-cyan-500">BLOW</span>といったヒントが与えられます。</div>
                         </div>
                     </div>
-                    <div className="text-sm text-left font-bold text-gray-500 mt-4">
+                    <div className="text-sm text-left font-bold text-gray-500 mt-4 dark:text-white">
                             <h3>例: 答えが2564のとき</h3>
                     </div>
                     <div>
-                        <div className="text-sm text-gray-500 text-left">
-                            あなたの推測が2485であれば、2がHIT、4と5がそれぞれBLOWであるため、
+                        <div className="text-sm text-left dark:text-white">
+                            あなたの推測が2485であれば、2が<span className="text-red-500 font-bold">HIT</span>、4と5がそれぞれ<span className="font-bold text-cyan-500">BLOW</span>であるため、
                             結果は以下のように表示されます。
                         </div>
                     </div>
@@ -79,10 +79,10 @@ export const RuleDialog = (prop) => {
                         SOLUTION={'2564'}
                         />
                     </div>
-                    <div className="text-sm text-left bg-rose-300 text-gray-500 rounded-md">
-                        <InformationCircleIcon className="h-5 w-5" />
+                    <div className="text-sm text-left bg-rose-300 rounded-md pb-2">
+                        <ExclamationCircleIcon className="h-5 w-5" />
                         <div className="px-2 py-2">
-                            推測は重複のない4桁の数字でなければなりません。
+                            推測は重複のない4桁の数字にしてください。
                         </div>
                     </div>
                 </div>
