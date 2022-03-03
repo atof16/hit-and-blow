@@ -18,7 +18,7 @@ export const ResultTable = (prop) => {
 
   return (
     <div className="mx-auto mb-4 px-4">
-      <div className="flex flex-col h-56 md:h-96 w-full border-2 border-gray-500 dark:border-white dark:border-white">
+      <div className="flex flex-col h-72 md:h-96 w-full border-2 border-gray-500 dark:border-white dark:border-white">
         <div className="flex-grow overflow-auto">
           <table className="relative w-full">
             <thead>
