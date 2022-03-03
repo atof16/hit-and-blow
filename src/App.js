@@ -187,9 +187,9 @@ function App() {
   }
 
   return (
-    <div className="App dark:bg-zinc-800 h-screen">
-      <div className="justify-center mx-auto h-full w-full max-w-sm">
-        <div className="flex justify-between mx-auto w-full items-center mb-6">
+    <div className="App dark:bg-zinc-800 min-h-screen">
+      <div className="justify-center mx-auto h-full w-full max-w-md">
+        <div className="flex justify-between mx-auto w-full items-center p-4">
           <h1 className="text-3xl dark:text-white font-bold">
             {GAME_TITLE}
           </h1>

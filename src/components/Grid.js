@@ -7,7 +7,7 @@ export const Grid = (prop) => {
     height: '58px'
   }
   return (
-    <div className="flex justify-center mb-6">
+    <div className="flex justify-center mb-4">
       {prop.guesses.map((guess, i) => (
         <div key={i.toString()}>
           <button style={styles} className={prop.currentPosition === i ? inPosition : classes} value={i.toString()} key={i.toString()} onClick={() => prop.onPosition(i)}>{guess}</button>
