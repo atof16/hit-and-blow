@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Hit And Blow
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://hit-and-blow-psi.vercel.app/
 
 ## Available Scripts
 
