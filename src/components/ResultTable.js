@@ -1,38 +1,46 @@
-import {checkHitAndBlow } from '../lib/checkhitandblow';
+import React, {useRef, useEffect}  from 'react';
+import { ResultItem } from './ResultItem'
 import {
-    YOUR_GUESS_HEAD,
-    HIT_HEAD,
-    BLOW_HEAD
+  YOUR_GUESS_HEAD,
+  HIT_HEAD,
+  BLOW_HEAD
 } from '../constant/strings';
 
-
 export const ResultTable = (prop) => {
-    const classes = "text-2xl font-bold dark:text-white border-b-2 border-black dark:border-white px-4 py-2";
+  const scrollBottomRef = useRef(null);
+  const scrollToButtom = () => {
+    scrollBottomRef.current.scrollIntoView({ behavior: "smooth" })
+  };
+    
+  useEffect(() => {
+    scrollToButtom();
+  }, [prop.lastResult])
 
-    return (
-        <div className="flex">
-        <div className="mx-auto item-center">
-            <table className="w-full table-fixed overflow-auto">
-                <thead className='border-b-2 border-black dark:border-white'>
-                    <tr>
-                        <th className="sticky px-4"></th>
-                        <th className="sticky text-xl dark:text-white px-4">{YOUR_GUESS_HEAD}</th>
-                        <th className="sticky text-xl px-6 text-red-500">{HIT_HEAD}</th>
-                        <th className="sticky text-xl text-cyan-500">{BLOW_HEAD}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {prop.lastResult.map((result, i) => (
-                        <tr key={i.toString()}>
-                            <td className={classes}>{i+1}</td>
-                            <td className={classes}>{result}</td>
-                            <td className={classes}>{checkHitAndBlow(prop.SOLUTION ,result)[0]}</td>
-                            <td className={classes}>{checkHitAndBlow(prop.SOLUTION ,result)[1]}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-        </div>
+  return (
+  <div className="flex flex-col h-72 w-full max-w-sm max-h-96 mt-5 mb-6 border-2 border-gray-500 dark:border-white dark:border-white">
+    <div className="flex-grow overflow-auto">
+      <table className="relative w-full">
+        <thead>
+          <tr>
+            <th className="bg-white dark:bg-zinc-800 sticky top-0 px-6"></th>
+            <th className="bg-white dark:bg-zinc-800 sticky top-0 text-xl dark:text-white">{YOUR_GUESS_HEAD}</th>
+            <th className="bg-white dark:bg-zinc-800 sticky top-0 text-xl px-6 text-red-500">{HIT_HEAD}</th>
+            <th className="bg-white dark:bg-zinc-800 sticky top-0 text-xl text-cyan-500">{BLOW_HEAD}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {prop.lastResult.map((result, index) => (
+            <ResultItem
+            key={index}
+            index={index}
+            result={result}
+            SOLUTION={prop.SOLUTION}
+            />
+          ))}
+        </tbody>
+      </table>
+      <div ref={scrollBottomRef}/>
+    </div>
+  </div>
     )
 };
